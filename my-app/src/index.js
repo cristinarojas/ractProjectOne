@@ -6,3 +6,5 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
+
+// registerServiceWorker - aunque se vaya la conexion los datos siguen descargados...guarda de manera temporal los archivos.

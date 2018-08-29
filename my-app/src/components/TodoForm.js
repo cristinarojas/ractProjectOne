@@ -33,8 +33,7 @@ class TodoForm extends Component {
   // For the form submit
   handleSubmit(e) {
     e.preventDefault(); // no refresca la pagina
-    console.log(this.state);
-    alert('Sending...');
+    this.props.onAddTodo(this.state);
   }
 
   render() {

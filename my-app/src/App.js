@@ -13,19 +13,31 @@ class App extends Component {
     super();
 
     this.state = {
-      title: 'Aplicacion de tareas',
-      ntareas: 10,
       todos
-    }
+    };
+
+    this.handleAddTodo = this.handleAddTodo.bind(this);
+  }
+
+  handleAddTodo(todo) {
+    this.setState({
+      todos: [...this.state.todos, todo]
+    })
+  }
+
+  removeTodo(index) {
+    this.setState({
+      todos: this.state.todos.filter((element, i) => {
+        return i !== index;
+      })
+    })
   }
 
   render() {
-    console.log(this.state.todos)
-
     // Manipulando los datos antes del ejecutar render
     const todos = this.state.todos.map((todo, i) => {
       return (
-        <div className="col-md-4">
+        <div className="col-md-4" key={i}>
           <div className="card mt-4">
             <div className="card-header">
               <h3>{todo.title}</h3>
@@ -37,6 +49,15 @@ class App extends Component {
             <div className="card-body">
               <p>{todo.description}</p>
               <mark>{todo.responsable}</mark>
+            </div>
+
+            <div className="card-footer">
+              <button
+                className="btn btn-danger"
+                onClick={this.removeTodo.bind(this, i)}
+                >
+                  Delete
+                </button>
             </div>
           </div>
         </div>
@@ -59,7 +80,7 @@ class App extends Component {
 
             <div className="col-md-4 text-center">
               <img src={logo} className="App-logo" alt="logo" />
-              <TodoForm></TodoForm>
+              <TodoForm onAddTodo={this.handleAddTodo} ></TodoForm>
             </div>
           </div>
 
